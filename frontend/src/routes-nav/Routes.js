@@ -3,7 +3,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
-
+import PrivateRoute from "./PrivateRoute";
+import CompanyList from "../companies/CompanyList";
 
 const Routes = ({ login, signup }) => {
     return (
@@ -12,24 +13,32 @@ const Routes = ({ login, signup }) => {
                 <Route exact path="/">
                     <Homepage />
                 </Route>
+
                 <Route exact path="/login">
                     <LoginForm login={login} />
                 </Route>
+
                 <Route exact path="/signup">
                     <SignupForm signup={signup} />
                 </Route>
-                <Route exact path="/">
+
+                <PrivateRoute exact path="/companies">
+                    <CompanyList />
+                </PrivateRoute>
+
+                <PrivateRoute exact path="/">
                 
-                </Route>
-                <Route exact path="/">
+                </PrivateRoute>
+
+                <PrivateRoute exact path="/">
                 
-                </Route>
-                <Route exact path="/">
+                </PrivateRoute>
                 
-                </Route>
-                <Route exact path="/">
+                <PrivateRoute exact path="/">
                 
-                </Route>
+                </PrivateRoute>
+
+                <Redirect to="/" />
             </Switch>
         </div>
     )
