@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from 'react-router-dom';
+import Navigation from "./routes-nav/Navigation";
+
 
 function App() {
+
+  const [infoLoaded, setInfoLoaded] = useState(false);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
+  const [currentUser, setCurrentUser] = useState(null);
+  // const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  
+  console.debug(
+    "App",
+    "infoLoaded", infoLoaded,
+    "currentUser", currentUser,
+    // "token=", token,
+  );
+
+  const logout = () => {
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navigation logout={logout} />
+
+      </div>
+    </BrowserRouter>
   );
 }
 
