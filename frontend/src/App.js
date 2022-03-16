@@ -4,6 +4,7 @@ import Navigation from "./routes-nav/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Routes from './routes-nav/Routes';
 import JoblyApi from './api/api';
+import UserContext from "./auth/UserContext";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
@@ -49,14 +50,28 @@ function App() {
     }
   }
 
+  const hasAppliedToJob = (id) => {
+    return applicationIds.has(id);
+  }
+
+  const applyToJob = (id) => {
+    if (hasAppliedToJob(id)) return;
+    JoblyApi.applyToJob(currentUser.username.id);
+    setApplicationIds(new Set([...applicationIds, id]));
+  }
+
+  
 
   return (
     <BrowserRouter>
+      <UserContext.Provider
+        value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}>
       <div className="App">
         <Navigation logout={logout} />
         <Routes login={login} signup={signup} />
 
       </div>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
