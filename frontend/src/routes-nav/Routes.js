@@ -5,6 +5,9 @@ import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import PrivateRoute from "./PrivateRoute";
 import CompanyList from "../companies/CompanyList";
+import JobList from "../jobs/JobList";
+import CompanyDetail from "../companies/CompanyDetail";
+import ProfileForm from "../profiles/ProfileForm";
 
 const Routes = ({ login, signup }) => {
     return (
@@ -25,17 +28,17 @@ const Routes = ({ login, signup }) => {
                 <PrivateRoute exact path="/companies">
                     <CompanyList />
                 </PrivateRoute>
-
-                <PrivateRoute exact path="/">
-                
+                    
+                <PrivateRoute exact path="/jobs">
+                   <JobList />
                 </PrivateRoute>
 
-                <PrivateRoute exact path="/">
-                
+                <PrivateRoute exact path="/companies/:handle">
+                    <CompanyDetail />
                 </PrivateRoute>
-                
-                <PrivateRoute exact path="/">
-                
+
+                <PrivateRoute exact path="/profile">
+                    <ProfileForm />
                 </PrivateRoute>
 
                 <Redirect to="/" />
