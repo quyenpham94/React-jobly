@@ -5,6 +5,8 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import Routes from './routes-nav/Routes';
 import JoblyApi from './api/api';
 import UserContext from "./auth/UserContext";
+import LoadingSpinner from "./common/LoadingSpinner";
+import jwt from 'jsonwebtoken';
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
@@ -21,6 +23,27 @@ function App() {
     "currentUser", currentUser,
     "token=", token,
   );
+
+  useEffect(function loadUserInfo() {
+    async function getCurrentUser() {
+      if (token) {
+        try {
+          let { username } = jwt.decode(token);
+          JoblyApi.token = token;
+          let currentUser = await JoblyApi.getCurrentUser(username);
+          setCurrentUser(currentUser);
+          setApplicationIds(new Set(currentUser.application));
+        } catch(e) {
+          setCurrentUser(null);
+        }
+      }
+      setInfoLoaded(true);
+    }
+
+    setInfoLoaded(false);
+    getCurrentUser();
+
+  }, [token]);
 
   const logout = () => {
     setCurrentUser(null);
@@ -60,7 +83,7 @@ function App() {
     setApplicationIds(new Set([...applicationIds, id]));
   }
 
-  
+  if (!infoLoaded) return <LoadingSpinner />
 
   return (
     <BrowserRouter>

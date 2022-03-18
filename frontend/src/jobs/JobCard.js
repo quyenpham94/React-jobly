@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../auth/UserContext";
 
+import "./JobCard.css";
+
 const JobCard = ({ id, title, salary, equity, companyName }) => {
     const { hasAppliedToJob, applyToJob } = useContext(UserContext);
     const [applied, setApplied] = useState();

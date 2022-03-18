@@ -33,9 +33,9 @@ const Routes = ({ login, signup }) => {
                    <JobList />
                 </Route>
 
-                <PrivateRoute exact path="/companies/:handle">
+                <Route exact path="/companies/:handle">
                     <CompanyDetail />
-                </PrivateRoute>
+                </Route>
 
                 <PrivateRoute exact path="/profile">
                     <ProfileForm />
