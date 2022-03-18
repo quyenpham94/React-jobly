@@ -3,6 +3,8 @@ import Alert from "../common/Alert";
 import JoblyApi from "../api/api";
 import UserContext from "../auth/UserContext";
 
+// import useTimedMessage from "./hooks/useTimedMessage";
+
 const ProfileForm = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
@@ -106,7 +108,7 @@ const ProfileForm = () => {
                             : null}
                         
                         {saveConfirmed
-                            ? <Alert type="success" messages={["Updated successfully"]} />
+                            ? <Alert type="success" messages={["Updated successfully."]} />
                             : null}
 
                         <button 

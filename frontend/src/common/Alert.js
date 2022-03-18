@@ -9,7 +9,7 @@ const Alert = ({ type = "danger", messages = [] }) => {
                 </p>
             ))}    
         </div>
-    )
+    );
 }
 
 export default Alert;

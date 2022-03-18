@@ -33,6 +33,7 @@ const LoginForm = ({ login }) => {
                 <h3 className="mb-3">Log In</h3>
 
                 <div className="card">
+                    <div className="card-body">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label>Username</label>
@@ -69,6 +70,7 @@ const LoginForm = ({ login }) => {
                             Submit    
                         </button>   
                     </form>
+                    </div>  
                 </div>
             </div>
 

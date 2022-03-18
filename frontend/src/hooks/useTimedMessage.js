@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const useTimedMessage = (timeInMsec = 3000) => {
     const [active, setActive] = useState(false);

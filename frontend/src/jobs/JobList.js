@@ -8,7 +8,7 @@ const JobList = () => {
     const [jobs, setJobs] = useState(null);
 
     useEffect(function getAllJobsOnMount() {
-        Search();
+        search();
     }, []);
 
     /** Triggered by search from submit; reloads jobs */

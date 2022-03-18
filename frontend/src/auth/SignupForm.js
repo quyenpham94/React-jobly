@@ -5,7 +5,7 @@ import Alert from "../common/Alert";
 const SignupForm = ({ signup }) => {
     const history = useHistory();
     const [formData, setFormData] = useState({
-        usename: "",
+        username: "",
         password: "",
         firstName: "",
         lastName: "",
